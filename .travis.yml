@@ -67,6 +67,8 @@ install:
       fi;
     - if [ "${TEST_INSTALL}" == "1" ]; then
         python setup.py install;
+      else
+        export PYTHONPATH=.;
       fi;
     - if [ "${TEST_DOCS}" == "1" ]; then
         pip install sphinx;
