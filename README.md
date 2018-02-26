@@ -1,5 +1,8 @@
 # Dialite
 
+[![Build Status](https://travis-ci.org/flexxui/dialite.svg)](https://travis-ci.org/flexxui/dialite)
+[![Documentation Status](https://readthedocs.org/projects/dialite/badge/?version=latest)](https://dialite.readthedocs.org)
+
 Dialite is a lightweight Python package to show dialogs. It provides a
 handful of functions, each a verb, that can be used to `inform()`, `warn()`
 or `fail()` the user, or to `ask_ok()`, `ask_retry()` or `ask_yesno()`.
