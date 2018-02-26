@@ -72,7 +72,7 @@ class FakeWindowsApp(WindowsApp):
     
     def __init__(self, *args, **kwargs):
         self._messages = []
-        super().__init__(*args, **kwargs)
+        WindowsApp.__init__(self, *args, **kwargs)
     
     def _message(self, type, *args, **kwargs):
         self._messages.append(type)
@@ -83,7 +83,7 @@ class FakeLinuxApp(LinuxApp):
     
     def __init__(self, *args, **kwargs):
         self._messages = []
-        super().__init__(*args, **kwargs)
+        LinuxApp.__init__(self, *args, **kwargs)
     
     def _message(self, type, *args, **kwargs):
         self._messages.append(type)
@@ -94,7 +94,7 @@ class FakeOSXApp(OSXApp):
     
     def __init__(self, *args, **kwargs):
         self._messages = []
-        super().__init__(*args, **kwargs)
+        OSXApp.__init__(self, *args, **kwargs)
     
     def _message(self, type, *args, **kwargs):
         self._messages.append(type)
