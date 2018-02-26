@@ -61,7 +61,6 @@ class WindowsApp(BaseApp):
         retcode, res = check_output(['cscript', '//Nologo', '//E:JScript',
                                      self._filename, str(type),
                                      title, message])
-        print(res)
         # assert retcode == 0
         resmap = {'0': False, '2': False, '7': False,
                   '1': True, '4': True, '6': True}
