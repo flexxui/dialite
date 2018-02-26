@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Manual test. Should be run on each supported platform.
 """
