@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import sys
+
 from ._base import BaseApp, check_output, test_call
 
 
@@ -32,7 +34,9 @@ class OSXApp(BaseApp):
         return self._message(title, message, 'buttons {"Yes", "No"}')
 
     def _message(self, title, message, *more):
-        message = message.replace('"', '\u201C').replace("'", '\u2018')
+        message = message.replace('"', u'\u201C').replace("'", u'\u2018')
+        if sys.version_info[0] == 2:
+            message = message.encode('utf-8')
         t = 'tell app (path to frontmost application as text) '
         t += 'to display dialog "%s" with title "%s"'
         t += ' ' + ' '.join(more)

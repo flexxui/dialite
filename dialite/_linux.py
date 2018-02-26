@@ -1,6 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
 import os
+import sys
 
 from ._base import BaseApp, check_output, test_call
 
@@ -41,7 +42,9 @@ class LinuxApp(BaseApp):
     def _message(self, type, title, message, *more):
         env = os.environ.copy()
         env['WINDOWID'] = ''
-        message = message.replace('"', '\u201C').replace("'", '\u2018')
+        message = message.replace('"', u'\u201C').replace("'", u'\u2018')
+        if sys.version_info[0] == 2:
+            message = message.encode('utf-8')
         res, _ = check_output(['zenity', type, '--title', title,
                                '--text', message] + list(more), env=env)
         return not res  # an exit-code of zero means yes/ok
