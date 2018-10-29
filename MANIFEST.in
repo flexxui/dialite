@@ -1,5 +1,7 @@
 include LICENSE README.md
 
+recursive-include tests *
+
 global-exclude .git*
 global-exclude *.pyo
 global-exclude *.pyc
