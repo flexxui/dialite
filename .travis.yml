@@ -20,8 +20,6 @@ matrix:
         #
         - python: "2.7"
           env: TEST_UNIT=1 TEST_INSTALL=1
-        - python: "pypy-5.7.1"
-          env: TEST_UNIT=1 TEST_INSTALL=1
         #
         - python: "pypy3"
           env: TEST_UNIT=1
@@ -29,8 +27,10 @@ matrix:
           env: TEST_UNIT=1 TEST_INSTALL=1
         - python: "3.6"
           env: TEST_UNIT=1
-        #- python: "3.7"
-        #  env: TEST_UNIT=1
+        - python: "3.7"
+          env: TEST_UNIT=1
+        - python: "3.8"
+          env: TEST_UNIT=1
 
 before_install:
     - SRC_DIR=$(pwd)
