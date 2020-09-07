@@ -22,18 +22,18 @@ WScript.Echo(ret);
 
 
 class WindowsApp(BaseApp):
-    """ Implementation of dialogs for Windows, by making use of Windows Script
+    """Implementation of dialogs for Windows, by making use of Windows Script
     Host (cscript.exe), and JScript as the ActiveX language.
     """
 
     def __init__(self, *args, **kwargs):
         BaseApp.__init__(self, *args, **kwargs)
-        self._filename = os.path.join(tempfile.gettempdir(), 'dialite_win.js')
-        with open(self._filename, 'wb') as f:
-            f.write(script.encode('utf-8'))
+        self._filename = os.path.join(tempfile.gettempdir(), "dialite_win.js")
+        with open(self._filename, "wb") as f:
+            f.write(script.encode("utf-8"))
 
     def works(self):
-        return test_call(['cscript'])
+        return test_call(["cscript"])
 
     def fail(self, title, message):
         # 4096 makes it system modal
@@ -55,13 +55,20 @@ class WindowsApp(BaseApp):
         return self._message(32 + 4, title, message)
 
     def _message(self, type, title, message):
-        message = message.replace('"', u'\u201C').replace("'", u'\u2018')
+        message = message.replace('"', u"\u201C").replace("'", u"\u2018")
         if sys.version_info[0] == 2:
             message = message.encode(sys.getfilesystemencoding())
-        retcode, res = check_output(['cscript', '//Nologo', '//E:JScript',
-                                     self._filename, str(type),
-                                     title, message])
+        retcode, res = check_output(
+            [
+                "cscript",
+                "//Nologo",
+                "//E:JScript",
+                self._filename,
+                str(type),
+                title,
+                message,
+            ]
+        )
         # assert retcode == 0
-        resmap = {'0': False, '2': False, '7': False,
-                  '1': True, '4': True, '6': True}
+        resmap = {"0": False, "2": False, "7": False, "1": True, "4": True, "6": True}
         return resmap.get(res.strip(), None)

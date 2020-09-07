@@ -16,7 +16,7 @@ uses Zenity.
 
 from __future__ import absolute_import, division, print_function
 
-__version__ = '0.5.2'  # noqa
+__version__ = "0.5.2"  # noqa
 
 import logging
 import sys
@@ -33,10 +33,10 @@ from ._osx import OSXApp
 from ._windows import WindowsApp
 
 
-if sys.version_info > (3, ):
-    string_types = str,  # noqa
+if sys.version_info > (3,):
+    string_types = (str,)  # noqa
 else:  # pragma: no cover
-    string_types = basestring,  # noqa
+    string_types = (basestring,)  # noqa
 
 
 _the_app = None
@@ -44,8 +44,7 @@ _disabled = 0
 
 
 def _get_app(force_new=False):
-    """ Internal function to get the app that should be used.
-    """
+    """Internal function to get the app that should be used."""
     global _the_app
     if _disabled:
         return StubApp()
@@ -54,11 +53,11 @@ def _get_app(force_new=False):
         return _the_app
 
     # Select preferred app
-    if sys.platform.startswith('win'):
+    if sys.platform.startswith("win"):
         app = WindowsApp()
-    elif sys.platform.startswith('linux'):
+    elif sys.platform.startswith("linux"):
         app = LinuxApp()
-    elif sys.platform.startswith('darwin'):
+    elif sys.platform.startswith("darwin"):
         app = OSXApp()
     else:
         app = TerminalApp()
@@ -74,7 +73,7 @@ def _get_app(force_new=False):
 
 
 class NoDialogs(object):
-    """ Context manager to temporarily disable dialogs, e.g. during tests.
+    """Context manager to temporarily disable dialogs, e.g. during tests.
     Note that (currenty) the questions that require user input will raise
     SystemExit. Also note thate on CI dialogs are generally already disabled.
     """
@@ -90,55 +89,54 @@ class NoDialogs(object):
 
 
 def is_supported():
-    """ Get whether Dialite is supported for the current platform.
-    """
+    """Get whether Dialite is supported for the current platform."""
     return not isinstance(_the_app, StubApp)
 
 
-def fail(title='Error', message=''):
-    """ Show a message to let the user know that something failed.
+def fail(title="Error", message=""):
+    """Show a message to let the user know that something failed.
 
     Parameters:
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
     if not isinstance(title, string_types):
-        raise TypeError('fail() title must be a string.')
+        raise TypeError("fail() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('fail() message must be a string.')
+        raise TypeError("fail() message must be a string.")
     _get_app().fail(title, message)
 
 
-def warn(title='Warning', message=''):
-    """ Warn the user about something.
+def warn(title="Warning", message=""):
+    """Warn the user about something.
 
     Parameters:
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
     if not isinstance(title, string_types):
-        raise TypeError('warn() title must be a string.')
+        raise TypeError("warn() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('warn() message must be a string.')
+        raise TypeError("warn() message must be a string.")
     _get_app().warn(title, message)
 
 
-def inform(title='Info', message=''):
-    """ Inform the user about something.
+def inform(title="Info", message=""):
+    """Inform the user about something.
 
     Parameters:
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
     if not isinstance(title, string_types):
-        raise TypeError('inform() title must be a string.')
+        raise TypeError("inform() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('inform() message must be a string.')
+        raise TypeError("inform() message must be a string.")
     _get_app().inform(title, message)
 
 
-def ask_ok(title='Confirm', message=''):
-    """ Ask the user to confirm something via an ok-cancel question.
+def ask_ok(title="Confirm", message=""):
+    """Ask the user to confirm something via an ok-cancel question.
 
     Parameters:
         title (str): the text to show as the window title.
@@ -148,14 +146,14 @@ def ask_ok(title='Confirm', message=''):
         bool: Whether the user selected "OK".
     """
     if not isinstance(title, string_types):
-        raise TypeError('ask_ok() title must be a string.')
+        raise TypeError("ask_ok() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('ask_ok() message must be a string.')
+        raise TypeError("ask_ok() message must be a string.")
     return _get_app().ask_ok(title, message)
 
 
-def ask_retry(title='Retry', message=''):
-    """ Ask the user whether to retry something via a retry-cancel question.
+def ask_retry(title="Retry", message=""):
+    """Ask the user whether to retry something via a retry-cancel question.
 
     Parameters:
         title (str): the text to show as the window title.
@@ -165,14 +163,14 @@ def ask_retry(title='Retry', message=''):
         bool: Whether the user selected "Retry".
     """
     if not isinstance(title, string_types):
-        raise TypeError('ask_retry() title must be a string.')
+        raise TypeError("ask_retry() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('ask_retry() message must be a string.')
+        raise TypeError("ask_retry() message must be a string.")
     return _get_app().ask_retry(title, message)
 
 
-def ask_yesno(title='Question', message=''):
-    """ Ask the user a yes-no question.
+def ask_yesno(title="Question", message=""):
+    """Ask the user a yes-no question.
 
     Parameters:
         title (str): the text to show as the window title.
@@ -182,7 +180,7 @@ def ask_yesno(title='Question', message=''):
         bool:  Whether the user selected "Yes".
     """
     if not isinstance(title, string_types):
-        raise TypeError('ask_yesno() title must be a string.')
+        raise TypeError("ask_yesno() title must be a string.")
     if not isinstance(message, string_types):
-        raise TypeError('ask_yesno() message must be a string.')
+        raise TypeError("ask_yesno() message must be a string.")
     return _get_app().ask_yesno(title, message)
