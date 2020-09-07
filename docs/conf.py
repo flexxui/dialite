@@ -58,7 +58,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Dialite"
-copyright = "2015-2018, Almar Klein"
+copyright = "2015-2020, Almar Klein"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
