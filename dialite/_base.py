@@ -97,22 +97,22 @@ class StubApp(BaseApp):
         sys.exit(t % (kind, sys.platform, title, message))
 
     def fail(self, title, message):
-        logger.error("fail", title, message)
+        logger.error("FAIL %s: %s" % (title, message))
 
     def warn(self, title, message):
-        logger.warning("%s: %s" % (title, message))
+        logger.warning("WARN %s: %s" % (title, message))
 
     def inform(self, title, message):
-        logger.info("%s: %s" % (title, message))
+        logger.info("INFO %s: %s" % (title, message))
 
     def ask_ok(self, title, message):
-        self._error("confirm", title, message)
+        self._error("CONFIRM %s: %s" % (title, message))
 
     def ask_retry(self, title, message):
-        self._error("retry", title, message)
+        self._error("RETRY %s: %s" % (title, message))
 
     def ask_yesno(self, title, message):
-        self._error("yesno", title, message)
+        self._error("YESNO %s: %s" % (title, message))
 
 
 def check_output(*args, **kwargs):
