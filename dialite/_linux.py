@@ -12,39 +12,48 @@ from ._base import BaseApp, check_output, test_call
 
 
 class LinuxApp(BaseApp):
-    """ Implementation of dialogs for Linux, by making use of Zenity.
-    """
+    """Implementation of dialogs for Linux, by making use of Zenity."""
 
     def works(self):
-        return test_call(['zenity', '--version'])
+        return test_call(["zenity", "--version"])
 
     def fail(self, title, message):
-        self._message('--error', title, message)
+        self._message("--error", title, message)
 
     def warn(self, title, message):
-        self._message('--warning', title, message)
+        self._message("--warning", title, message)
 
     def inform(self, title, message):
-        self._message('--info', title, message)
+        self._message("--info", title, message)
 
     def ask_ok(self, title, message):
-        return self._message('--question', title, message,
-                             '--ok-label', 'OK', '--cancel-label', 'Cancel')
+        return self._message(
+            "--question", title, message, "--ok-label", "OK", "--cancel-label", "Cancel"
+        )
 
     def ask_retry(self, title, message):
-        return self._message('--question', title, message,
-                             '--ok-label', 'Retry', '--cancel-label', 'Cancel')
+        return self._message(
+            "--question",
+            title,
+            message,
+            "--ok-label",
+            "Retry",
+            "--cancel-label",
+            "Cancel",
+        )
 
     def ask_yesno(self, title, message):
-        return self._message('--question', title, message,
-                             '--ok-label', 'Yes', '--cancel-label', 'No')
+        return self._message(
+            "--question", title, message, "--ok-label", "Yes", "--cancel-label", "No"
+        )
 
     def _message(self, type, title, message, *more):
         env = os.environ.copy()
-        env['WINDOWID'] = ''
-        message = message.replace('"', u'\u201C').replace("'", u'\u2018')
+        env["WINDOWID"] = ""
+        message = message.replace('"', u"\u201C").replace("'", u"\u2018")
         if sys.version_info[0] == 2:
-            message = message.encode('utf-8')
-        res, _ = check_output(['zenity', type, '--title', title,
-                               '--text', message] + list(more), env=env)
+            message = message.encode("utf-8")
+        res, _ = check_output(
+            ["zenity", type, "--title", title, "--text", message] + list(more), env=env
+        )
         return not res  # an exit-code of zero means yes/ok

@@ -6,17 +6,16 @@ from ._base import BaseApp, check_output, test_call
 
 
 class OSXApp(BaseApp):
-    """ Implementation of dialogs for OS X, by making use of osascript.
-    """
+    """Implementation of dialogs for OS X, by making use of osascript."""
 
     def works(self):
-        return test_call(['osascript', '-e', 'return "hi"'])
+        return test_call(["osascript", "-e", 'return "hi"'])
 
     def fail(self, title, message):
-        self._message(title, message, 'with icon stop', 'buttons {"OK"}')
+        self._message(title, message, "with icon stop", 'buttons {"OK"}')
 
     def warn(self, title, message):
-        self._message(title, message, 'with icon caution', 'buttons {"OK"}')
+        self._message(title, message, "with icon caution", 'buttons {"OK"}')
 
     def inform(self, title, message):
         self._message(title, message, 'buttons {"OK"}')
@@ -34,14 +33,12 @@ class OSXApp(BaseApp):
         return self._message(title, message, 'buttons {"Yes", "No"}')
 
     def _message(self, title, message, *more):
-        message = message.replace('"', u'\u201C').replace("'", u'\u2018')
+        message = message.replace('"', u"\u201C").replace("'", u"\u2018")
         if sys.version_info[0] == 2:
-            message = message.encode('utf-8')
-        t = 'tell app (path to frontmost application as text) '
+            message = message.encode("utf-8")
+        t = "tell app (path to frontmost application as text) "
         t += 'to display dialog "%s" with title "%s"'
-        t += ' ' + ' '.join(more)
-        retcode, res = check_output(['osascript', '-e',
-                                     t % (message, title)])
-        resmap = {'no': False, 'cancel': False,
-                  'ok': True, 'retry': True, 'yes': True}
-        return resmap.get(res.strip().split(':')[-1].lower(), None)
+        t += " " + " ".join(more)
+        retcode, res = check_output(["osascript", "-e", t % (message, title)])
+        resmap = {"no": False, "cancel": False, "ok": True, "retry": True, "yes": True}
+        return resmap.get(res.strip().split(":")[-1].lower(), None)
