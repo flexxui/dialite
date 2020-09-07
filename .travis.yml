@@ -80,11 +80,6 @@ install:
         pip install flake8;
       fi;
 
-before_script:
-  # Enable fake display
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
 
 # Run the tests
 script:
