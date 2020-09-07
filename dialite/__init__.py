@@ -16,7 +16,7 @@ uses Zenity.
 
 from __future__ import absolute_import, division, print_function
 
-__version__ = "0.5.2"  # noqa
+__version__ = "0.5.3"  # noqa
 
 import logging
 import sys
