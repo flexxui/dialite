@@ -27,10 +27,10 @@ del logging  # noqa
 
 # We import all modules; no dynamic loading. That will only complicate things,
 # e.g. for tools like cx_Freeze.
-from ._base import BaseApp, StubApp, TerminalApp
-from ._linux import LinuxApp
-from ._osx import OSXApp
-from ._windows import WindowsApp
+from ._base import BaseApp, StubApp, TerminalApp  # noqa: 402
+from ._linux import LinuxApp  # noqa: 402
+from ._osx import OSXApp  # noqa: 402
+from ._windows import WindowsApp  # noqa: 402
 
 
 if sys.version_info > (3,):
