@@ -106,13 +106,13 @@ class StubApp(BaseApp):
         logger.info("INFO %s: %s" % (title, message))
 
     def ask_ok(self, title, message):
-        self._error("CONFIRM %s: %s" % (title, message))
+        self._error("CONFIRM", title, message)
 
     def ask_retry(self, title, message):
-        self._error("RETRY %s: %s" % (title, message))
+        self._error("RETRY", title, message)
 
     def ask_yesno(self, title, message):
-        self._error("YESNO %s: %s" % (title, message))
+        self._error("YESNO", title, message)
 
 
 def check_output(*args, **kwargs):
