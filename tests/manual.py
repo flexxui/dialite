@@ -63,7 +63,7 @@ assert res is True
 
 res = dialite.ask_ok(
     PREFIX + "confirm",
-    "Great, I am going to asume all tests passed then!" "Press OK to continue.",
+    "Great, I am going to asume all tests passed then! Press OK to continue.",
 )
 assert res is True
 
