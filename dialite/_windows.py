@@ -1,7 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
 import os
-import sys
 import tempfile
 
 from ._base import BaseApp, check_output, test_call
@@ -55,9 +54,7 @@ class WindowsApp(BaseApp):
         return self._message(32 + 4, title, message)
 
     def _message(self, type, title, message):
-        message = message.replace('"', u"\u201C").replace("'", u"\u2018")
-        if sys.version_info[0] == 2:
-            message = message.encode(sys.getfilesystemencoding())
+        message = message.replace('"', "\u201c").replace("'", "\u2018")
         retcode, res = check_output(
             [
                 "cscript",

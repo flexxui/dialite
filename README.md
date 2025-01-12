@@ -8,7 +8,7 @@ handful of functions, each a verb, that can be used to `inform()`, `warn()`
 or `fail()` the user, or to `ask_ok()`, `ask_retry()` or `ask_yesno()`.
 
 Dialite is pure Python, has no dependencies, and is written to work on
-Python 3 and Python 2.7. It works on Windows (from at least XP), Linux
+Python 3.6+. It works on Windows (from at least XP), Linux
 (most ones anyway, including Raspbian) and OS X.
 
 Dialite provides a way to communicate with the user without needing a fancy

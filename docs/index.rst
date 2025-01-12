@@ -13,7 +13,7 @@ Introduction
 Dependencies and installation
 -----------------------------
 
-Dialite is pure Python and has no dependencies. It works on Python 2.7 and 3.4+.
+Dialite is pure Python and has no dependencies. It works on Python 3.6+.
 Install using: ``pip install dialite``.
 
 

@@ -22,8 +22,6 @@ ROOT_DIR = os.path.abspath(os.path.join(__file__, "..", ".."))
 sys.path.insert(0, ROOT_DIR)
 # sys.path.insert(0, os.path.abspath('scripts'))
 
-import dialite
-
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -58,7 +56,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Dialite"
-copyright = "2015-2020, Almar Klein"
+copyright = "2015-2025, Almar Klein"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
