@@ -25,7 +25,7 @@ from ._osx import OSXApp
 from ._windows import WindowsApp
 
 
-__version__ = "0.5.3"
+__version__ = "0.6.0"
 
 
 _the_app = None
