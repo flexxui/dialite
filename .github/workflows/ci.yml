@@ -53,8 +53,30 @@ jobs:
           cd docs
           make html SPHINXOPTS="-W --keep-going"
 
+  test-build-legacy:
+    name: Test ubuntu-latest py2.7
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 2.7
+      uses: LizardByte/setup-python-action@master
+      with:
+        python-version: '2.7'
+    - name: Install dependencies
+      run: |
+          python -m pip install --upgrade pip
+          pip install -U pytest pytest-cov
+    - name: Install in development mode
+      run: |
+          pip install -e .
+    - name: Test on repo
+      run: |
+          pytest -v tests
+
   test-builds:
-    name: Test ${{ matrix.os }} py${{ matrix.pyversion }} ${{ matrix.qtlib }}
+    name: Test ${{ matrix.os }} py${{ matrix.pyversion }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -75,15 +97,6 @@ jobs:
             pyversion: '3.10'
           - os: ubuntu-latest
             pyversion: '3.9'
-          - os: ubuntu-latest
-            pyversion: '3.8'
-          - os: ubuntu-latest
-            pyversion: '3.7'
-          - os: ubuntu-latest
-            pyversion: '3.6'
-          - os: ubuntu-latest
-            pyversion: '2.7'
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.pyversion }}
