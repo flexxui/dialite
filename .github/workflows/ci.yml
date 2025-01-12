@@ -75,11 +75,6 @@ jobs:
             pyversion: '3.10'
           - os: ubuntu-latest
             pyversion: '3.9'
-          # No earlier Python 3.x versions available.
-          # Would love to test on Python 2.7, but not possible with actions/setup-python@v
-          # I also tried an alt action, but it gave an error related to sqlite.
-          # Should work on 2.7 though, since I did not change the logic since it was
-          # last tested on 2.7 ;)
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.pyversion }}
