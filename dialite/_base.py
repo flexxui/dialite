@@ -1,15 +1,15 @@
 from __future__ import absolute_import, division, print_function
 
 import os
-import subprocess
 import sys
 import time
+import logging
+import subprocess
 import webbrowser
 
-from . import logger
 
-if sys.version_info < (3,):  # pragma: no cover
-    input = raw_input  # noqa
+logger = logging.getLogger("dialite")
+logger.setLevel(logging.INFO)
 
 
 class BaseApp(object):

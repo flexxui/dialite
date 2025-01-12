@@ -29,8 +29,8 @@ assert res is True
 
 res = dialite.ask_yesno(
     PREFIX + "unicode",
-    u"Do you see \"double quotes\", 'single quotes', "
-    u"a euro symbol (€), pi symbol (π), an A with a roof (Â)?",
+    "Do you see \"double quotes\", 'single quotes', "
+    "a euro symbol (€), pi symbol (π), an A with a roof (Â)?",
 )
 assert res is True
 

@@ -17,7 +17,7 @@ license = { file = "LICENSE" }
 
 authors = [{ name = "Almar Klein" }]
 keywords = ["GUI", "dialog", "lightweight"]
-requires-python = ">= 2.7"
+requires-python = ">= 3.6"
 dependencies = []
 [project.optional-dependencies]
 lint = ["ruff"]
@@ -47,6 +47,5 @@ line-length = 88
 [tool.ruff.lint]
 select = ["F", "E", "W", "B", "RUF"]
 ignore = [
-    # "E501",   # Line too long
-    "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
+    "RUF005", # Consider iterable unpacking instead of concatenation
 ]

@@ -14,29 +14,18 @@ uses Zenity.
 
 """
 
-from __future__ import absolute_import, division, print_function
-
-__version__ = "0.5.3"  # noqa
-
-import logging
 import sys
 
-logger = logging.getLogger(__name__)  # noqa
-logger.setLevel(logging.INFO)  # noqa
-del logging  # noqa
 
 # We import all modules; no dynamic loading. That will only complicate things,
 # e.g. for tools like cx_Freeze.
-from ._base import BaseApp, StubApp, TerminalApp  # noqa: 402
-from ._linux import LinuxApp  # noqa: 402
-from ._osx import OSXApp  # noqa: 402
-from ._windows import WindowsApp  # noqa: 402
+from ._base import BaseApp, StubApp, TerminalApp, logger as logger
+from ._linux import LinuxApp
+from ._osx import OSXApp
+from ._windows import WindowsApp
 
 
-if sys.version_info > (3,):
-    string_types = (str,)  # noqa
-else:  # pragma: no cover
-    string_types = (basestring,)  # noqa
+__version__ = "0.5.3"
 
 
 _the_app = None
@@ -100,9 +89,9 @@ def fail(title="Error", message=""):
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("fail() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("fail() message must be a string.")
     _get_app().fail(title, message)
 
@@ -114,9 +103,9 @@ def warn(title="Warning", message=""):
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("warn() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("warn() message must be a string.")
     _get_app().warn(title, message)
 
@@ -128,9 +117,9 @@ def inform(title="Info", message=""):
         title (str): the text to show as the window title.
         message (str): the message to show in the body of the dialog.
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("inform() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("inform() message must be a string.")
     _get_app().inform(title, message)
 
@@ -145,9 +134,9 @@ def ask_ok(title="Confirm", message=""):
     Returns:
         bool: Whether the user selected "OK".
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("ask_ok() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("ask_ok() message must be a string.")
     return _get_app().ask_ok(title, message)
 
@@ -162,9 +151,9 @@ def ask_retry(title="Retry", message=""):
     Returns:
         bool: Whether the user selected "Retry".
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("ask_retry() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("ask_retry() message must be a string.")
     return _get_app().ask_retry(title, message)
 
@@ -179,8 +168,8 @@ def ask_yesno(title="Question", message=""):
     Returns:
         bool:  Whether the user selected "Yes".
     """
-    if not isinstance(title, string_types):
+    if not isinstance(title, str):
         raise TypeError("ask_yesno() title must be a string.")
-    if not isinstance(message, string_types):
+    if not isinstance(message, str):
         raise TypeError("ask_yesno() message must be a string.")
     return _get_app().ask_yesno(title, message)

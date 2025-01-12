@@ -3,7 +3,6 @@ Automatic test for dialite. There's not that much code, really, so the manual
 test is way more important...
 """
 
-import os
 import sys
 import logging
 import webbrowser
@@ -58,7 +57,6 @@ class capture_log:
 
 
 class FakeStdin(object):
-
     answer = "y"
 
     def isatty(self):
@@ -135,7 +133,6 @@ def test_check_output():
 
 
 def test_all_backends_are_complete():
-
     for cls in (StubApp, WindowsApp, LinuxApp, OSXApp):
         assert issubclass(cls, BaseApp)
         for name in dir(BaseApp):
@@ -146,7 +143,6 @@ def test_all_backends_are_complete():
 
 
 def test_get_app():
-
     app1 = dialite._get_app()
     app2 = dialite._get_app()
     app3 = dialite._get_app(True)
@@ -158,7 +154,6 @@ def test_get_app():
 
 
 def test_context_manager():
-
     app1 = dialite._get_app()
     with dialite.NoDialogs():
         app2 = dialite._get_app()
@@ -173,7 +168,6 @@ def test_main_funcs():
     o_app = dialite._the_app
 
     try:
-
         # No args
         dialite._the_app = app = NoopApp()
         for func in (
@@ -223,14 +217,13 @@ def test_main_funcs():
 
 
 def test_windows():
-    """ Pretend that this is Windows. """
+    """Pretend that this is Windows."""
 
     o_platform = sys.platform
     o_app = dialite._the_app
     sys.platform = "win32"
 
     try:
-
         app = FakeWindowsApp()
         # assert app.works()
         assert isinstance(app, WindowsApp)
@@ -262,14 +255,13 @@ def test_windows():
 
 
 def test_linux():
-    """ Pretend that this is Linux. """
+    """Pretend that this is Linux."""
 
     o_platform = sys.platform
     o_app = dialite._the_app
     sys.platform = "linux"
 
     try:
-
         app = FakeLinuxApp()
         # assert app.works()
         assert isinstance(app, LinuxApp)
@@ -301,14 +293,13 @@ def test_linux():
 
 
 def test_osx():
-    """ Pretend that this is OS X. """
+    """Pretend that this is OS X."""
 
     o_platform = sys.platform
     o_app = dialite._the_app
     sys.platform = "darwin"
 
     try:
-
         app = FakeOSXApp()
         # assert app.works()
         assert isinstance(app, OSXApp)
@@ -340,7 +331,7 @@ def test_osx():
 
 
 def test_unsupported_platform1():
-    """ Unsupported platform, fallback to terminal. """
+    """Unsupported platform, fallback to terminal."""
 
     o_platform = sys.platform
     o_stdin = sys.stdin
@@ -351,7 +342,6 @@ def test_unsupported_platform1():
     sys.stdin = FakeStdin()
 
     try:
-
         app = dialite._get_app(True)
         assert app.works()
         assert isinstance(app, TerminalApp)
@@ -386,7 +376,7 @@ def test_unsupported_platform1():
 
 
 def test_unsupported_platform2():
-    """ Unsupported platform, and also no terminal. """
+    """Unsupported platform, and also no terminal."""
 
     o_platform = sys.platform
     o_stdin = sys.stdin
@@ -398,7 +388,6 @@ def test_unsupported_platform2():
     webbrowser.open = lambda x: None
 
     try:
-
         app = dialite._get_app(True)
         assert app.works()
         assert isinstance(app, StubApp)
