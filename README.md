@@ -1,6 +1,6 @@
 # Dialite
 
-[![Build Status](https://travis-ci.org/flexxui/dialite.svg)](https://travis-ci.org/flexxui/dialite)
+[![CI](https://github.com/flexxui/dialite/workflows/CI/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/dialite/badge/?version=latest)](https://dialite.readthedocs.org)
 
 Dialite is a lightweight Python package to show dialogs. It provides a
@@ -17,7 +17,7 @@ cx_Freeze and PyInstaller.
 
 
 ## Example:
-    
+
 ```py
 import dialite
 
