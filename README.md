@@ -1,6 +1,6 @@
 # Dialite
 
-[![CI](https://github.com/flexxui/dialite/workflows/CI/badge.svg)
+![CI](https://github.com/flexxui/dialite/workflows/CI/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/dialite/badge/?version=latest)](https://dialite.readthedocs.org)
 
 Dialite is a lightweight Python package to show dialogs. It provides a
