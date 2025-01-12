@@ -1,0 +1,52 @@
+# Notes on how to do a release.
+#
+# * Bump `__version__` and commit.
+# * git tag vx.y
+# * git push origin main vx.y
+# * flit publish
+
+# ===== Project info
+
+[project]
+dynamic = ["version"]
+name = "dialite"
+description = "Lightweight Python library to show simple dialogs"
+readme = "README.md"
+license = { file = "LICENSE" }
+
+
+authors = [{ name = "Almar Klein" }]
+keywords = ["GUI", "dialog", "lightweight"]
+requires-python = ">= 2.7"
+dependencies = []
+[project.optional-dependencies]
+lint = ["ruff"]
+tests = ["pytest"]
+docs = ["sphinx"]
+dev = ["dialite[lint,tests, docs]"]
+
+[project.urls]
+Homepage = "https://github.com/flexxui/dialite"
+Documentation = "http://dialite.readthedocs.io"
+Repository = "https://github.com/flexxui/dialite"
+
+
+# ===== Building
+
+# Flit is great solution for simple pure-Python projects.
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+
+# ===== Tooling
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "B", "RUF"]
+ignore = [
+    # "E501",   # Line too long
+    "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
+]
